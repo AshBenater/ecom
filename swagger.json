@@ -1,0 +1,2316 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "Codecademy e-Commerce REST API",
+      "description": "Defines the backend logic relating to the <strong>'registration'</strong>, <strong>'customers'</strong>, <strong>'addresses'</strong>, <strong>'orders'</strong>, <strong>'products'</strong>, <strong>'cart'</strong>, and <strong>'login'</strong> endpoints of an e-commerce REST API.  <code>GET</code> operations can be performed directly on the <strong>HEROKU</strong> database; <code>POST</code>/<code>PUT</code>/<code>DELETE</code> operations can be performed on the <strong>SWAGGER HUB</strong> <em>virtual mocking server</em> so that the <strong>HEROKU</strong> database is not compromised.",
+      "version": "0.1"
+    },
+    "servers": [
+      {
+        "url": "https://codecademy-e-commerce-rest-api.herokuapp.com",
+        "description": "Heroku App"
+      },
+      {
+        "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+        "description": "SwaggerHub API Auto Mocking"
+      }
+    ],
+    "paths": {
+      "/api/registration": {
+        "post": {
+          "tags": [
+            "Registration"
+          ],
+          "summary": "Register a new customer",
+          "description": "Adds a new customer's details to the 'customers' and 'addresses' tables",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Registration"
+                },
+                "examples": {
+                  "0": {
+                    "value": "{\n    \"first_name\": \"Customer First Name\",\n    \"last_name\": \"Customer Last Name\",\n    \"username\": \"Customer Username\",\n    \"password\": \"Customer Password\",\n    \"email\": \"Customer Email\",\n    \"street_number\": 7,\n    \"street_name\": \"Customer Street Name\",\n    \"town\": \"Customer Town\",\n    \"county\": \"Customer County\",\n    \"country\": \"Customer Country\",\n    \"postcode\": \"P05t c0d3\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Returns a confirmation of successful customer registration",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Your customer profile has been created successfully"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Returns a description of the error that was unexpectedly encountered",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "DEPENDING ON THE NATURE OF THE ERROR {err.message} THAT WAS ENCOUNTERED - The username you have selected is already in use. Please choose a different username. -OR- The password you have selected is already in use. Please choose a different password. - OR - The email address you have selected is already in use. Please choose a different email address. - OR - The unexpected value of {err.message}."
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "servers": [
+          {
+            "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+            "description": "SwaggerHub API Auto Mocking"
+          }
+        ]
+      },
+      "/api/customers": {
+        "get": {
+          "tags": [
+            "Customers"
+          ],
+          "summary": "Return all customer information",
+          "description": "Returns the 'id', 'first_name', 'last_name', 'username', 'password', and 'email' fields for all customers in the 'customers' table",
+          "responses": {
+            "200": {
+              "description": "JSON array of customers",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Customer"
+                    }
+                  },
+                  "example": [
+                    {
+                      "id": 1,
+                      "first_name": "Christopher",
+                      "last_name": "Larham",
+                      "username": "chris_larham_1983",
+                      "password": "updated_chrissy_b0i*",
+                      "email": "chrislarham@example.com"
+                    },
+                    {
+                      "id": 2,
+                      "first_name": "Charlotte",
+                      "last_name": "Marie",
+                      "username": "charlotte_marie_1986",
+                      "password": "mar13p0os*",
+                      "email": "charlottemarie@example.com"
+                    },
+                    {
+                      "id": 3,
+                      "first_name": "William",
+                      "last_name": "Larham",
+                      "username": "will_larham_2007",
+                      "password": "w1lliam*",
+                      "email": "williamlarham@example.com"
+                    },
+                    {
+                      "id": 4,
+                      "first_name": "Seth",
+                      "last_name": "Larham",
+                      "username": "seth_larham_2008",
+                      "password": "s3th0*",
+                      "email": "sethlarham@example.com"
+                    },
+                    {
+                      "id": 5,
+                      "first_name": "Alyssa",
+                      "last_name": "Larham",
+                      "username": "alyssa_larham_2010",
+                      "password": "aly55a*",
+                      "email": "alyssalarham@example.com"
+                    },
+                    {
+                      "id": 6,
+                      "first_name": "Roger",
+                      "last_name": "Larham",
+                      "username": "roger_larham_1955",
+                      "password": "r0ger*",
+                      "email": "rogerlarham@example.com"
+                    },
+                    {
+                      "id": 7,
+                      "first_name": "Judith",
+                      "last_name": "Larham",
+                      "username": "judi_larham_1956",
+                      "password": "Jud1*",
+                      "email": "judilarham@example.com"
+                    },
+                    {
+                      "id": 8,
+                      "first_name": "Matthew",
+                      "last_name": "Rowlings",
+                      "username": "matt_rowlings_1983",
+                      "password": "Matti3*",
+                      "email": "mattrowlings@example.com"
+                    },
+                    {
+                      "id": 9,
+                      "first_name": "Steen",
+                      "last_name": "Jinks",
+                      "username": "steen_jinks_1991",
+                      "password": "Jink5*",
+                      "email": "steenjinks@example.com"
+                    },
+                    {
+                      "id": 10,
+                      "first_name": "Joe",
+                      "last_name": "Bloggs",
+                      "username": "joe_bloggs_1992",
+                      "password": "bl0ggs",
+                      "email": "joebloggs@example.com"
+                    },
+                    {
+                      "id": 11,
+                      "first_name": "Lugali",
+                      "last_name": "Bobtail",
+                      "username": "lugali_bobtail_1758",
+                      "password": "lugal1*",
+                      "email": "lugalibobtail@example.com"
+                    },
+                    {
+                      "id": 12,
+                      "first_name": "Divine",
+                      "last_name": "Intervention",
+                      "username": "divine_intervention_0",
+                      "password": "Genes1s*",
+                      "email": "divineintervention@outlook.com"
+                    },
+                    {
+                      "id": 13,
+                      "first_name": "Customer First Name",
+                      "last_name": "Customer Last Name",
+                      "username": "Customer Username",
+                      "password": "Customer Password",
+                      "email": "Customer Email"
+                    }
+                  ]
+                }
+              }
+            },
+            "500": {
+              "description": "Returns a description of the error {err} that was unexpectedly encountered",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "The unexpected value of {err.message}."
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://codecademy-e-commerce-rest-api.herokuapp.com",
+              "description": "Heroku App"
+            },
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "servers": [
+          {
+            "url": "https://codecademy-e-commerce-rest-api.herokuapp.com",
+            "description": "Heroku App"
+          },
+          {
+            "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+            "description": "SwaggerHub API Auto Mocking"
+          }
+        ]
+      },
+      "/api/customers/{customerId}": {
+        "get": {
+          "tags": [
+            "Customers"
+          ],
+          "summary": "Return information relating to a specific customer",
+          "description": "Returns the 'first_name', 'last_name', 'username', 'password', and 'email' fields relating to the customer whose id is 'customer_id'",
+          "parameters": [
+            {
+              "name": "customerId",
+              "in": "path",
+              "description": "The customer ID",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "A customer object",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Customer"
+                  },
+                  "example": "{\n  \"id\": 1,\n  \"first_name\": \"Christopher\",\n  \"last_name\": \"Larham\",\n  \"username\": \"chris_larham_1983\",\n  \"password\": \"updated_chrissy_b0i*\",\n  \"email\": \"chrislarham@example.com\"\n}  "
+                }
+              }
+            },
+            "404": {
+              "description": "Customer with the specified ID not found in the database",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Customer does not exist in the database."
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Returns a description of the error {err} that was unexpectedly encountered",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "The unexpected value of {err.message}."
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://codecademy-e-commerce-rest-api.herokuapp.com",
+              "description": "Heroku App"
+            },
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "put": {
+          "tags": [
+            "Customers"
+          ],
+          "summary": "Update a specific customer's details",
+          "description": "Updates the 'first_name', 'last_name', 'username', and 'password' details for the customer whose id is 'customer_id'",
+          "parameters": [
+            {
+              "name": "customerId",
+              "in": "path",
+              "description": "The customer ID",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomerUpdate"
+                },
+                "examples": {
+                  "0": {
+                    "value": "{\n    \"first_name\": \"Christopher\",\n    \"last_name\": \"Larham\",\n    \"username\": \"chris_larham_1983\",\n    \"password\": \"updated_chrissy_b0i*\",\n    \"email\": \"chrislarham@example.com\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "String confirmation that the customer's details were updated successfully",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Customer with id {customerId} updated successfully"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Customer with the specified ID not found in the database",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Customer does not exist in the database."
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Returns a description of the error {err} that was unexpectedly encountered",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "The unexpected value of {err.message}."
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "delete": {
+          "tags": [
+            "Customers"
+          ],
+          "summary": "Delete a specific customer from the database",
+          "description": "Deletes the customer details relating to the customer whose id is 'customerId' from the 'customers' table",
+          "parameters": [
+            {
+              "name": "customerId",
+              "in": "path",
+              "description": "The customer ID",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "String confirmation that the customer details belonging to the customer with id 'customerId' have been deleted from the 'customers' table",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "example": "Customer with id {customerId} deleted successfully"
+                }
+              }
+            },
+            "500": {
+              "description": "Returns a description of the error {err} that was unexpectedly encountered",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "The unexpected value of {err.message}."
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "servers": [
+          {
+            "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+            "description": "SwaggerHub API Auto Mocking"
+          }
+        ]
+      },
+      "/api/addresses": {
+        "get": {
+          "tags": [
+            "Addresses"
+          ],
+          "summary": "Return the addresses for all customers",
+          "description": "Returns all the addresses in the 'addresses' table",
+          "responses": {
+            "200": {
+              "description": "Returns a JSON array of addresses",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Address"
+                    }
+                  },
+                  "example": [
+                    {
+                      "id": 1,
+                      "street_number": 18,
+                      "town": "St. Austell",
+                      "county": "Cornwall",
+                      "country": "England",
+                      "postcode": "PL26 8TS",
+                      "customer_id": 1,
+                      "street_name": "Rosina Way"
+                    },
+                    {
+                      "id": 2,
+                      "street_number": 18,
+                      "town": "St. Austell",
+                      "county": "Cornwall",
+                      "country": "England",
+                      "postcode": "PL26 8TS",
+                      "customer_id": 2,
+                      "street_name": "Rosina Way"
+                    },
+                    {
+                      "id": 3,
+                      "street_number": 18,
+                      "town": "St. Austell",
+                      "county": "Cornwall",
+                      "country": "England",
+                      "postcode": "PL26 8TS",
+                      "customer_id": 3,
+                      "street_name": "Rosina Way"
+                    },
+                    {
+                      "id": 4,
+                      "street_number": 18,
+                      "town": "St. Austell",
+                      "county": "Cornwall",
+                      "country": "England",
+                      "postcode": "PL26 8TS",
+                      "customer_id": 4,
+                      "street_name": "Rosina Way"
+                    },
+                    {
+                      "id": 5,
+                      "street_number": 18,
+                      "town": "St. Austell",
+                      "county": "Cornwall",
+                      "country": "England",
+                      "postcode": "PL26 8TS",
+                      "customer_id": 5,
+                      "street_name": "Rosina Way"
+                    },
+                    {
+                      "id": 6,
+                      "street_number": 31,
+                      "town": "Bugle",
+                      "county": "Cornwall",
+                      "country": "England",
+                      "postcode": "PL26 8SJ",
+                      "customer_id": 10,
+                      "street_name": "Springfields"
+                    },
+                    {
+                      "id": 7,
+                      "street_number": 125,
+                      "town": "Upville",
+                      "county": "Super Mario",
+                      "country": "Oogloo",
+                      "postcode": "P249 IOLUG",
+                      "customer_id": 11,
+                      "street_name": "Rainbow Hills"
+                    },
+                    {
+                      "id": 8,
+                      "street_number": 7,
+                      "town": "Eden",
+                      "county": "Paradise",
+                      "country": "Omnipresence",
+                      "postcode": "EVR1 WH3R3",
+                      "customer_id": 12,
+                      "street_name": "Day Creation"
+                    },
+                    {
+                      "id": 9,
+                      "street_number": 9,
+                      "town": "St. Austell",
+                      "county": "Cornwall",
+                      "country": "England",
+                      "postcode": "PL25 4BJ",
+                      "customer_id": 6,
+                      "street_name": "North Hill Park"
+                    },
+                    {
+                      "id": 10,
+                      "street_number": 9,
+                      "town": "St. Austell",
+                      "county": "Cornwall",
+                      "country": "England",
+                      "postcode": "PL25 4BJ",
+                      "customer_id": 7,
+                      "street_name": "North Hill Park"
+                    },
+                    {
+                      "id": 11,
+                      "street_number": 7,
+                      "town": "St. Day",
+                      "county": "Cornwall",
+                      "country": "England",
+                      "postcode": "TR16 5MR",
+                      "customer_id": 8,
+                      "street_name": "Trenance Road"
+                    },
+                    {
+                      "id": 12,
+                      "street_number": 10,
+                      "town": "Redruth",
+                      "county": "Cornwall",
+                      "country": "England",
+                      "postcode": "TR15 1SJ",
+                      "customer_id": 9,
+                      "street_name": "Random Road"
+                    },
+                    {
+                      "id": 13,
+                      "street_number": 14,
+                      "town": "Updated Town",
+                      "county": "Updated County",
+                      "country": "Updated Country",
+                      "postcode": "P05t c0d3",
+                      "customer_id": 13,
+                      "street_name": "Updated Street Name"
+                    }
+                  ]
+                }
+              }
+            },
+            "500": {
+              "description": "Returns a description of the error {err} that was unexpectedly encountered",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "The unexpected value of {err.message}."
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://codecademy-e-commerce-rest-api.herokuapp.com",
+              "description": "Heroku App"
+            },
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "servers": [
+          {
+            "url": "https://codecademy-e-commerce-rest-api.herokuapp.com",
+            "description": "Heroku App"
+          },
+          {
+            "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+            "description": "SwaggerHub API Auto Mocking"
+          }
+        ]
+      },
+      "/api/addresses/{customerId}": {
+        "get": {
+          "tags": [
+            "Addresses"
+          ],
+          "summary": "Return the address information for a specific customer",
+          "description": "Returns the 'street_number', 'street_name', 'town', 'county', 'country', and 'postcode' fields for the customer whose id is 'customerId', in a single element array",
+          "parameters": [
+            {
+              "name": "customerId",
+              "in": "path",
+              "description": "The customer ID",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful return of the relevant customer address object in a single element array",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/AddressCustomer"
+                    }
+                  },
+                  "example": [
+                    {
+                      "street_number": 18,
+                      "street_name": "Rosina Way",
+                      "town": "St. Austell",
+                      "county": "Cornwall",
+                      "country": "England",
+                      "postcode": "PL25 8TS"
+                    }
+                  ]
+                }
+              }
+            },
+            "404": {
+              "description": "No address found for the specified customer",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "No address is associated with this customer id."
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Returns a description of the error {err} that was unexpectedly encountered",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "The unexpected value of {err.message}."
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://codecademy-e-commerce-rest-api.herokuapp.com",
+              "description": "Heroku App"
+            },
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "servers": [
+          {
+            "url": "https://codecademy-e-commerce-rest-api.herokuapp.com",
+            "description": "Heroku App"
+          },
+          {
+            "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+            "description": "SwaggerHub API Auto Mocking"
+          }
+        ]
+      },
+      "/api/addresses/{customerId}/{addressId}": {
+        "put": {
+          "tags": [
+            "Addresses"
+          ],
+          "summary": "Update a particular address belonging to a specific customer",
+          "description": "Updates the address that is specified by 'addressId', belonging to the customer whose id is 'customerId'",
+          "parameters": [
+            {
+              "name": "customerId",
+              "in": "path",
+              "description": "The customer ID",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            {
+              "name": "addressId",
+              "in": "path",
+              "description": "The address ID",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddressCustomer"
+                },
+                "examples": {
+                  "0": {
+                    "value": "{\n    \"street_number\": 14,\n    \"street_name\": \"Updated Street Name\",\n    \"town\": \"Updated Town\",\n    \"county\": \"Updated County\",\n    \"country\": \"Updated Country\",\n    \"postcode\": \"P05t c0d3\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Returns a string confirmation of successful address update",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "example": "Your address has been updated successfully."
+                }
+              }
+            },
+            "404": {
+              "description": "Specified address not associated with the specified customer in the database",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "This address is not associated with this customer id."
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Returns a description of the error {err} that was unexpectedly encountered",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "The unexpected value of {err.message}."
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "servers": [
+          {
+            "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+            "description": "SwaggerHub API Auto Mocking"
+          }
+        ]
+      },
+      "/api/orders/{customerId}": {
+        "get": {
+          "tags": [
+            "Orders"
+          ],
+          "summary": "Return the order history for a particular customer",
+          "description": "Returns the order history of the customer whose id is 'customerId'",
+          "parameters": [
+            {
+              "name": "customerId",
+              "in": "path",
+              "description": "The user ID",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Returns an array of JSON objects representing the order history of the specified customer",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Order"
+                    }
+                  },
+                  "example": [
+                    {
+                      "order_id": 3,
+                      "date_of_purchase": "2022-02-25T23:52:32.080Z",
+                      "cart": [
+                        {
+                          "product_id": 3,
+                          "customer_id": 12,
+                          "product_name": "Opportunity Rover - 2004-01-26 (Sol 1)",
+                          "product_description": "Photo taken by the Opportunity Rover's Panoramic Camera on 2004-01-26 (expedition sol 1)",
+                          "product_image_url": "https://mars.nasa.gov/mer/gallery/all/1/p/001/1P128287426EFF0000P2303L2M1-BR.JPG",
+                          "product_price": 600,
+                          "product_quantity": 9,
+                          "cumulative_product_price": 5400,
+                          "cart_total": 5400
+                        }
+                      ]
+                    },
+                    {
+                      "order_id": 2,
+                      "date_of_purchase": "2022-02-23T21:04:14.510Z",
+                      "cart": [
+                        {
+                          "product_id": 5,
+                          "customer_id": 12,
+                          "product_name": "Opportunity Rover - 2004-01-26 (Sol 1)",
+                          "product_description": "Photo taken by the Opportunity Rover's Rear Hazard Avoidance Camera on 2004-01-26 (expedition sol 1)",
+                          "product_image_url": "https://mars.nasa.gov/mer/gallery/all/1/r/001/1R128285184EDN0000P1002L0M1-BR.JPG",
+                          "product_price": 900,
+                          "product_quantity": 5,
+                          "cumulative_product_price": 4500,
+                          "cart_total": 7300
+                        },
+                        {
+                          "product_id": 4,
+                          "customer_id": 12,
+                          "product_name": "Opportunity Rover - 2009-09-11 (Sol 2001)",
+                          "product_description": "Photo taken by the Opportunity Rover's Rear Hazard Avoidance Camera on 2009-09-11 (expedition sol 2001)",
+                          "product_image_url": "https://mars.nasa.gov/mer/gallery/all/1/r/2001/1R305828935EFFA5FWP1312L0M1-BR.JPG",
+                          "product_price": 700,
+                          "product_quantity": 4,
+                          "cumulative_product_price": 2800,
+                          "cart_total": 7300
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            "404": {
+              "description": "No orders belonging to the specified customer were found in the database",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "No orders belonging to the specified customer were found in the database."
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Returns a description of the error {err} that was unexpectedly encountered",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "The unexpected value of {err.message}."
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://codecademy-e-commerce-rest-api.herokuapp.com",
+              "description": "Heroku App"
+            },
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "servers": [
+          {
+            "url": "https://codecademy-e-commerce-rest-api.herokuapp.com",
+            "description": "Heroku App"
+          },
+          {
+            "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+            "description": "SwaggerHub API Auto Mocking"
+          }
+        ]
+      },
+      "/api/orders/{customerId}/{orderId}": {
+        "get": {
+          "tags": [
+            "Orders"
+          ],
+          "summary": "Return the specified order details for the specified customer",
+          "description": "Returns the order details of the order whose id is 'orderId', made by the customer whose id is 'customerId'",
+          "parameters": [
+            {
+              "name": "customerId",
+              "in": "path",
+              "description": "The user ID",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            {
+              "name": "orderId",
+              "in": "path",
+              "description": "The order ID",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Returns a single-element array containing the specified order details for the specified customer",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Order"
+                    }
+                  },
+                  "example": [
+                    {
+                      "order_id": 3,
+                      "date_of_purchase": "2022-02-25T23:52:32.080Z",
+                      "cart": [
+                        {
+                          "product_id": 3,
+                          "customer_id": 12,
+                          "product_name": "Opportunity Rover - 2004-01-26 (Sol 1)",
+                          "product_description": "Photo taken by the Opportunity Rover's Panoramic Camera on 2004-01-26 (expedition sol 1)",
+                          "product_image_url": "https://mars.nasa.gov/mer/gallery/all/1/p/001/1P128287426EFF0000P2303L2M1-BR.JPG",
+                          "product_price": 600,
+                          "product_quantity": 9,
+                          "cumulative_product_price": 5400,
+                          "cart_total": 5400
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            "404": {
+              "description": "No association of the specified 'customerId' and 'orderId' exists in the database",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "No association of the specified customer ID and order ID exists in the database."
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Returns a description of the error {err} that was unexpectedly encountered",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "The unexpected value of {err.message}."
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://codecademy-e-commerce-rest-api.herokuapp.com",
+              "description": "Heroku App"
+            },
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "servers": [
+          {
+            "url": "https://codecademy-e-commerce-rest-api.herokuapp.com",
+            "description": "Heroku App"
+          },
+          {
+            "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+            "description": "SwaggerHub API Auto Mocking"
+          }
+        ]
+      },
+      "/api/products": {
+        "get": {
+          "tags": [
+            "Products"
+          ],
+          "summary": "Return all product information",
+          "description": "Returns an array of JSON objects that describe the products in the database",
+          "responses": {
+            "200": {
+              "description": "Indicates the successful return of an array of JSON objects that describe the products in the database",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Product"
+                    }
+                  },
+                  "example": [
+                    {
+                      "id": 1,
+                      "item_name": "Opportunity Rover - 2008-04-03 (Sol 1490)",
+                      "item_description": "Photo taken by the Opportunity Rover's Navigation Camera on 2008-04-03 (expedition sol 1490)",
+                      "image_url": "https//mars.nasa.gov/mer/gallery/all/1/n/1490/1N260454912EFF8976P1947L0M1-BR.JPG",
+                      "price": 1000
+                    },
+                    {
+                      "id": 2,
+                      "item_name": "Opportunity Rover - 2004-02-04 (Sol 10)",
+                      "item_description": "Photo taken by the Opportunity Rover's Front Hazard Avoidance Camera on 2004-02-04 (expedition sol 10)",
+                      "image_url": "https://mars.nasa.gov/mer/gallery/all/1/f/010/1F129070908EDN0224P1101L0M1-BR.JPG",
+                      "price": 800
+                    },
+                    {
+                      "id": 3,
+                      "item_name": "Opportunity Rover - 2004-01-26 (Sol 1)",
+                      "item_description": "Photo taken by the Opportunity Rover's Panoramic Camera on 2004-01-26 (expedition sol 1)",
+                      "image_url": "https://mars.nasa.gov/mer/gallery/all/1/p/001/1P128287426EFF0000P2303L2M1-BR.JPG",
+                      "price": 600
+                    },
+                    {
+                      "id": 4,
+                      "item_name": "Opportunity Rover - 2009-09-11 (Sol 2001)",
+                      "item_description": "Photo taken by the Opportunity Rover's Rear Hazard   Avoidance Camera on 2009-09-11 (expedition sol 2001)",
+                      "image_url": "https://mars.nasa.gov/mer/gallery/all/1/r/2001/1R305828935EFFA5FWP1312L0M1-BR.JPG",
+                      "price": 700
+                    },
+                    {
+                      "id": 5,
+                      "item_name": "Opportunity Rover - 2004-01-26 (Sol 1)",
+                      "item_description": "Photo taken by the Opportunity Rover's Rear Hazard Avoidance Camera on 2004-01-26 (expedition sol 1)",
+                      "image_url": "https://mars.nasa.gov/mer/gallery/all/1/r/001/1R128285184EDN0000P1002L0M1-BR.JPG",
+                      "price": 900
+                    },
+                    {
+                      "id": 6,
+                      "item_name": "Opportunity Rover - 2006-11-18 (Sol 1001)",
+                      "item_description": "Photo taken by the Opportunity Rover's Panoramic Camera on 2006-11-18 (expedition sol 1001)",
+                      "image_url": "https://mars.nasa.gov/mer/gallery/all/1/p/1001/1P217047759EFF76ZFP2426L2M1-BR.JPG",
+                      "price": 1500
+                    },
+                    {
+                      "id": 7,
+                      "item_name": "Opportunity Rover - 2009-09-11 (Sol 2001)",
+                      "item_description": "Photo taken by the Opportunity Rover's Front Hazard Avoidance Camera on 2009-09-11 (expedition sol 2001)",
+                      "image_url": "https://mars.nasa.gov/mer/gallery/all/1/f/2001/1F305828985EFFA5FWP1212L0M1-BR.JPG",
+                      "price": 1250
+                    },
+                    {
+                      "id": 8,
+                      "item_name": "Item Name [varchar(50)]",
+                      "item_description": "Item Description [text]",
+                      "image_url": "The NEW URL of the image associated with the item [varchar(100)]",
+                      "price": 1000
+                    }
+                  ]
+                }
+              }
+            },
+            "500": {
+              "description": "Returns a description of the error {err} that was unexpectedly encountered",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "The unexpected value of {err.message}."
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://codecademy-e-commerce-rest-api.herokuapp.com",
+              "description": "Heroku App"
+            },
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "post": {
+          "tags": [
+            "Products"
+          ],
+          "summary": "Add a product to the database",
+          "description": "Adds a product to the 'products' table of the e-Commerce database",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductCreation"
+                },
+                "examples": {
+                  "0": {
+                    "value": "{\n    \"item_name\": \"Item Name [varchar(50)]\",\n    \"item_description\": \"Item Description [text]\",\n    \"image_url\": \"The URL of the image associated with the item [varchar(100)]\",\n    \"price\": 1000\n}"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "String response that confirms product creation success",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "example": "Product created successfully."
+                }
+              }
+            },
+            "409": {
+              "description": "The product's 'image_url' is already in use and thus violates the unique constraint",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Product creation did not succeed because the image URL is already in use."
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Returns a description of the error {err} that was unexpectedly encountered",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "The unexpected value of {err.message}."
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "servers": [
+          {
+            "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+            "description": "SwaggerHub API Auto Mocking"
+          }
+        ]
+      },
+      "/api/products/{productId}": {
+        "get": {
+          "tags": [
+            "Products"
+          ],
+          "summary": "Return information relating to a particular product",
+          "description": "Returns a JSON object that describes the product specified by 'productId'",
+          "parameters": [
+            {
+              "name": "productId",
+              "in": "path",
+              "description": "The product ID",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Denotes the successful return of a JSON object that describes the product specified by 'productId'",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Product"
+                  },
+                  "example": "{\n  \"id\": 1,\n   \"item_name\": \"Opportunity Rover: 2008-04-03 (Sol 1490)\",\n   \"item_description\": \"Photo taken by the Opportunity Rover's Navigation Camera on 2008-04-03 (expedition sol 1490)\",\n   \"image_url\": \"https//mars.nasa.gov/mer/gallery/all/1/n/1490/1N260454912EFF8976P1947L0M1-BR.JPG\",\n   \"price\": 1000\n}"
+                }
+              }
+            },
+            "404": {
+              "description": "No product with the specified ID found in the database.",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "No product with the specified ID found in the database."
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Returns a description of the error {err} that was unexpectedly encountered",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "The unexpected value of {err.message}."
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://codecademy-e-commerce-rest-api.herokuapp.com",
+              "description": "Heroku App"
+            },
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "put": {
+          "tags": [
+            "Products"
+          ],
+          "summary": "Update the details of a particular product",
+          "description": "Updates the details of the product specified by 'productId'",
+          "parameters": [
+            {
+              "name": "productId",
+              "in": "path",
+              "description": "The product ID",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductUpdate"
+                },
+                "examples": {
+                  "0": {
+                    "value": "{\n    \"item_name\": \"Item Name [varchar(50)]\",\n    \"item_description\": \"Item Description [text]\",\n    \"image_url\": \"The UNIQUE URL of the image associated with the item [varchar(100)]\",\n    \"price\": 1250\n}"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "A string that confirms the product update success",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "example": "Product with id {productId} modified successfully."
+                }
+              }
+            },
+            "404": {
+              "description": "No product with the specified ID found in the database",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "No product with the specified ID found in the database."
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Returns a description of the error {err} that was unexpectedly encountered",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "The unexpected value of {err.message}."
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "delete": {
+          "tags": [
+            "Products"
+          ],
+          "summary": "Delete a product from the database",
+          "description": "Auto generated using Swagger Inspector",
+          "parameters": [
+            {
+              "name": "productId",
+              "in": "path",
+              "description": "The product ID",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "String that signifies the specified product was successfully deleted",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "example": "Product with id {productId} deleted."
+                }
+              }
+            },
+            "500": {
+              "description": "Returns a description of the error {err} that was unexpectedly encountered",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "The unexpected value of {err.message}."
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "servers": [
+          {
+            "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+            "description": "SwaggerHub API Auto Mocking"
+          }
+        ]
+      },
+      "/api/cart/{customerId}": {
+        "get": {
+          "tags": [
+            "Cart"
+          ],
+          "summary": "Return the cart details for a particular customer",
+          "description": "Returns an array of JSON objects that detail the cart contents of the customer specified by 'customerId'",
+          "parameters": [
+            {
+              "name": "customerId",
+              "in": "path",
+              "description": "The customer ID",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Denotes the successful return of an array of JSON objects that detail the cart contents of the customer specified by 'customerId'",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CartItem"
+                    }
+                  },
+                  "example": [
+                    {
+                      "product_id": 3,
+                      "customer_id": 12,
+                      "product_name": "Opportunity Rover - 2004-01-26 (Sol 1)",
+                      "product_description": "Photo taken by the Opportunity Rover's Panoramic Camera on 2004-01-26 (expedition sol 1)",
+                      "product_image_url": "https://mars.nasa.gov/mer/gallery/all/1/p/001/1P128287426EFF0000P2303L2M1-BR.JPG",
+                      "product_price": 600,
+                      "product_quantity": 5,
+                      "cumulative_product_price": 3000,
+                      "cart_total": 7900
+                    },
+                    {
+                      "product_id": 4,
+                      "customer_id": 12,
+                      "product_name": "Opportunity Rover - 2009-09-11 (Sol 2001)",
+                      "product_description": "Photo taken by the Opportunity Rover's Rear Hazard Avoidance Camera on 2009-09-11 (expedition sol 2001)",
+                      "product_image_url": "https://mars.nasa.gov/mer/gallery/all/1/r/2001/1R305828935EFFA5FWP1312L0M1-BR.JPG",
+                      "product_price": 700,
+                      "product_quantity": 7,
+                      "cumulative_product_price": 4900,
+                      "cart_total": 7900
+                    }
+                  ]
+                }
+              }
+            },
+            "404": {
+              "description": "There is nothing in the specified customer's shopping cart",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Your shopping cart is empty."
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Returns a description of the error {err} that was unexpectedly encountered",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "The unexpected value of {err.message}."
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://codecademy-e-commerce-rest-api.herokuapp.com",
+              "description": "Heroku App"
+            },
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "put": {
+          "tags": [
+            "Cart"
+          ],
+          "summary": "Update the quantity of a particular product in the customer's cart",
+          "description": "Updates the quantity of a particular product in the shopping cart of the customer specified by 'customerId'. As this is only an update operation, if an invalid 'customerId' or 'productId' is passed to this endpoint then the 'update' occurs to a non-existing record and a success response is returned.",
+          "parameters": [
+            {
+              "name": "customerId",
+              "in": "path",
+              "description": "The customer ID",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartAddUpdate"
+                },
+                "examples": {
+                  "0": {
+                    "value": "{\n    \"product_id\": 3,\n    \"product_quantity\": 9\n}"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "A string confirmation that the quantity of a particular product has been updated",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "example": "Quantity (9) of product with id 3 updated successfully."
+                }
+              }
+            },
+            "500": {
+              "description": "Returns a description of the error {err} that was unexpectedly encountered",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "The unexpected value of {err.message}."
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "post": {
+          "tags": [
+            "Cart"
+          ],
+          "summary": "Add a certain quantity of a particular product to the customer's cart",
+          "description": "Adds a defined quantity of a particular item to the specified customer's shopping cart",
+          "parameters": [
+            {
+              "name": "customerId",
+              "in": "path",
+              "description": "The customer ID",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartAddUpdate"
+                },
+                "examples": {
+                  "0": {
+                    "value": "{\n    \"product_id\": 3,\n    \"product_quantity\": 5\n}"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "String confirmation of the number of products added to the cart",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "example": "5 product(s) with id 3 added to cart."
+                }
+              }
+            },
+            "400": {
+              "description": "No record of a customer with the specified 'customerId' exists in the database.",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "There is no record of a customer with the specified 'customerId' in the database."
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "No record of a product with the specified 'productId' exists in the database.",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "There is no record of a product with the specified 'productId' in the database."
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Returns a description of the error {err} that was unexpectedly encountered",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "The unexpected value of {err.message}."
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "servers": [
+          {
+            "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+            "description": "SwaggerHub API Auto Mocking"
+          }
+        ]
+      },
+      "/api/cart/{customerId}/{productId}": {
+        "delete": {
+          "tags": [
+            "Cart"
+          ],
+          "summary": "Delete a particular product from the specified customer's cart",
+          "description": "Removes the product specified by 'productId' from the shopping cart of the customer specified by 'customerId'. As this is only a delete operation, if an incorrect 'customerId' or 'productId' is present then the 'delete' occurs on an empty field and a success response is returned.",
+          "parameters": [
+            {
+              "name": "customerId",
+              "in": "path",
+              "description": "The customer ID",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            {
+              "name": "productId",
+              "in": "path",
+              "description": "The product Id",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "String confirmation that the product specified by 'productId' has been removed from the shopping cart of the customer specified by 'customerId'",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "example": "Product with id {productId} removed from your cart."
+                }
+              }
+            },
+            "500": {
+              "description": "Returns a description of the error {err} that was unexpectedly encountered",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "The unexpected value of {err.message}."
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "servers": [
+          {
+            "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+            "description": "SwaggerHub API Auto Mocking"
+          }
+        ]
+      },
+      "/api/cart/{customerId}/checkoutComplete": {
+        "post": {
+          "tags": [
+            "Cart"
+          ],
+          "summary": "Save the specified customer's order to the database and clears the customer's shopping cart",
+          "description": "This endpoint is used once the customer specified by 'customerId' has successfully paid for their items. It saves the customer's order to the 'orders' table, clears the shopping cart associated with the customer in the 'cart' table, and returns a string confirmation of this process.",
+          "parameters": [
+            {
+              "name": "customerId",
+              "in": "path",
+              "description": "The customer ID",
+              "required": true,
+              "style": "simple",
+              "explode": false,
+              "schema": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "String confirmation that the customer's order has been saved and their cart has been cleared.",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "example": "Your transaction has been added to your order history and your cart has been cleared. We hope you enjoy your purchase!"
+                }
+              }
+            },
+            "404": {
+              "description": "No cart is associated with the specified customer.",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "Your cart is empty so there is nothing to process!"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Returns a description of the error {err} that was unexpectedly encountered",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string",
+                    "example": "The unexpected value of {err.message}."
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "servers": [
+          {
+            "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+            "description": "SwaggerHub API Auto Mocking"
+          }
+        ]
+      },
+      "/login": {
+        "get": {
+          "tags": [
+            "Login"
+          ],
+          "summary": "Render a form that allows the customer to log in",
+          "description": "Renders the login page",
+          "responses": {
+            "200": {
+              "description": "Successful render of the login page",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "example": "Login View"
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://codecademy-e-commerce-rest-api.herokuapp.com",
+              "description": "Heroku App"
+            },
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "servers": [
+          {
+            "url": "https://codecademy-e-commerce-rest-api.herokuapp.com",
+            "description": "Heroku App"
+          },
+          {
+            "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+            "description": "SwaggerHub API Auto Mocking"
+          }
+        ]
+      },
+      "/login/authenticated": {
+        "post": {
+          "tags": [
+            "Login"
+          ],
+          "summary": "Process the customer's submitted username and password",
+          "description": "This endpoint receives a 'username' and 'password' and either renders the 'Logged In View' or redirects to the 'Login Failure View', depending on whether the supplied fields authenticate successfully.",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Login"
+                },
+                "examples": {
+                  "0": {
+                    "value": "{\n    \"username\": \"chris_larham_1983\",\n    \"password\": \"updated_chrissy_b0i*\"\n}"
+                  },
+                  "1": {
+                    "value": "{\n    \"username\": \"wrong_username\",\n    \"password\": \"wrong_password\"\n}"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Used to describe 2 possible outcomes - 1. Successful authentication of the user-supplied username and password, and the subsequent rendering of the 'Logged In View'; and 2. The '302' redirection and subsequent '200' rendering of the 'Login Failure View' in response to unsuccessful authentication of the user-supplied username and password.",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {
+                    "0": {
+                      "value": "Logged In View/Login Failure View (depending on authentication status)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "servers": [
+          {
+            "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+            "description": "SwaggerHub API Auto Mocking"
+          }
+        ]
+      },
+      "/login/authenticated/logout": {
+        "post": {
+          "tags": [
+            "Login"
+          ],
+          "summary": "Log the user out",
+          "description": "Allows the user to log out, redirecting them to the 'Login View'.",
+          "responses": {
+            "200": {
+              "description": "Denotes the user's logout success.",
+              "content": {
+                "text/html; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "example": "Login View"
+                }
+              }
+            }
+          },
+          "servers": [
+            {
+              "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+              "description": "SwaggerHub API Auto Mocking"
+            }
+          ]
+        },
+        "servers": [
+          {
+            "url": "https://virtserver.swaggerhub.com/chris-larham-1983/e-Commerce_Registration_Customers_Addresses_Orders/0.1",
+            "description": "SwaggerHub API Auto Mocking"
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "Registration": {
+          "type": "object",
+          "properties": {
+            "first_name": {
+              "type": "string",
+              "description": "The customer's first name"
+            },
+            "last_name": {
+              "type": "string",
+              "description": "The customer's last name"
+            },
+            "username": {
+              "type": "string",
+              "description": "The customer's username"
+            },
+            "password": {
+              "type": "string",
+              "description": "The customer's password"
+            },
+            "email": {
+              "type": "string",
+              "description": "The customer's email address"
+            },
+            "street_number": {
+              "type": "integer",
+              "description": "The street number associated with the customer's address"
+            },
+            "street_name": {
+              "type": "string",
+              "description": "The street name associated with the customer's address"
+            },
+            "town": {
+              "type": "string",
+              "description": "The town associated with the customer's address"
+            },
+            "county": {
+              "type": "string",
+              "description": "The county associated with the customer's address"
+            },
+            "country": {
+              "type": "string",
+              "description": "The country associated with the customer's address"
+            },
+            "postcode": {
+              "type": "string",
+              "description": "The postcode associated with the customer's address"
+            }
+          }
+        },
+        "Customer": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "The customer's ID"
+            },
+            "first_name": {
+              "type": "string",
+              "description": "The customer's first name"
+            },
+            "last_name": {
+              "type": "string",
+              "description": "The customer's last name"
+            },
+            "username": {
+              "type": "string",
+              "description": "The customer's username"
+            },
+            "password": {
+              "type": "string",
+              "description": "The customer's password"
+            },
+            "email": {
+              "type": "string",
+              "description": "The customer's email address"
+            }
+          }
+        },
+        "CustomerUpdate": {
+          "type": "object",
+          "properties": {
+            "first_name": {
+              "type": "string",
+              "description": "The customer's first name"
+            },
+            "last_name": {
+              "type": "string",
+              "description": "The customer's last name"
+            },
+            "username": {
+              "type": "string",
+              "description": "The customer's username"
+            },
+            "password": {
+              "type": "string",
+              "description": "The customer's password"
+            },
+            "email": {
+              "type": "string",
+              "description": "The customer's email address"
+            }
+          }
+        },
+        "Address": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "The address id"
+            },
+            "street_number": {
+              "type": "integer",
+              "description": "The street number"
+            },
+            "street_name": {
+              "type": "string",
+              "description": "The street name"
+            },
+            "town": {
+              "type": "string",
+              "description": "The town"
+            },
+            "county": {
+              "type": "string",
+              "description": "The county"
+            },
+            "country": {
+              "type": "string",
+              "description": "The country"
+            },
+            "postcode": {
+              "type": "string",
+              "description": "The postcode"
+            },
+            "customer_id": {
+              "type": "integer",
+              "description": "The id of the customer who lives at this address"
+            }
+          }
+        },
+        "AddressCustomer": {
+          "type": "object",
+          "properties": {
+            "street_number": {
+              "type": "integer",
+              "description": "The street number of the customer's address"
+            },
+            "street_name": {
+              "type": "string",
+              "description": "The street name of the customer's address"
+            },
+            "town": {
+              "type": "string",
+              "description": "The town associated with the customer's address"
+            },
+            "county": {
+              "type": "string",
+              "description": "The county associated with the customer's address"
+            },
+            "country": {
+              "type": "string",
+              "description": "The country associated with the customer's address"
+            },
+            "postcode": {
+              "type": "string",
+              "description": "The postcode associated with the customer's address"
+            }
+          }
+        },
+        "Order": {
+          "type": "object",
+          "properties": {
+            "order_id": {
+              "type": "integer",
+              "description": "The order ID"
+            },
+            "date_of_purchase": {
+              "type": "string",
+              "description": "The timestamp associated with the order",
+              "format": "date-time"
+            },
+            "cart": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Order_cart"
+              }
+            }
+          }
+        },
+        "Product": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "The product ID"
+            },
+            "item_name": {
+              "type": "string",
+              "description": "The product name"
+            },
+            "item_description": {
+              "type": "string",
+              "description": "The product description"
+            },
+            "image_url": {
+              "type": "string",
+              "description": "The URL of the image that represents the item"
+            },
+            "price": {
+              "type": "integer",
+              "description": "The price of the product in pence"
+            }
+          }
+        },
+        "ProductCreation": {
+          "type": "object",
+          "properties": {
+            "item_name": {
+              "type": "string",
+              "description": "The product name"
+            },
+            "item_description": {
+              "type": "string",
+              "description": "The product description"
+            },
+            "image_url": {
+              "type": "string",
+              "description": "The URL of the image that represents the item"
+            },
+            "price": {
+              "type": "integer",
+              "description": "The price of the product in pence"
+            }
+          }
+        },
+        "ProductUpdate": {
+          "type": "object",
+          "properties": {
+            "item_name": {
+              "type": "string",
+              "description": "The product name"
+            },
+            "item_description": {
+              "type": "string",
+              "description": "The product description"
+            },
+            "image_url": {
+              "type": "string",
+              "description": "The URL of the image that represents the product"
+            },
+            "price": {
+              "type": "integer",
+              "description": "The price of the product in pence"
+            }
+          }
+        },
+        "CartAddUpdate": {
+          "type": "object",
+          "properties": {
+            "product_id": {
+              "type": "integer",
+              "description": "The ID of the product that is to be added to the customer's cart"
+            },
+            "product_quantity": {
+              "type": "integer",
+              "description": "The quantity of the specified product to add"
+            }
+          }
+        },
+        "CartItem": {
+          "type": "object",
+          "properties": {
+            "product_id": {
+              "type": "integer",
+              "description": "The product ID"
+            },
+            "customer_id": {
+              "type": "integer",
+              "description": "The customer ID"
+            },
+            "product_name": {
+              "type": "string",
+              "description": "The product name"
+            },
+            "product_description": {
+              "type": "string",
+              "description": "The product description"
+            },
+            "product_image_url": {
+              "type": "string",
+              "description": "The URL of the image that represents the product"
+            },
+            "product_price": {
+              "type": "integer",
+              "description": "The price of the product in pence"
+            },
+            "product_quantity": {
+              "type": "integer",
+              "description": "The quantity of this particular item"
+            },
+            "cumulative_product_price": {
+              "type": "integer",
+              "description": "The result of multiplying the product_price by the product_quantity"
+            },
+            "cart_total": {
+              "type": "integer",
+              "description": "The sum total of all the items in the customer's cart"
+            }
+          }
+        },
+        "Login": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string",
+              "description": "The user-supplied username"
+            },
+            "password": {
+              "type": "string",
+              "description": "The user-supplied password"
+            }
+          }
+        },
+        "Order_cart": {
+          "type": "object",
+          "properties": {
+            "product_id": {
+              "type": "integer",
+              "description": "The product ID"
+            },
+            "customer_id": {
+              "type": "integer",
+              "description": "The customer ID"
+            },
+            "product_name": {
+              "type": "string",
+              "description": "The product name"
+            },
+            "product_description": {
+              "type": "string",
+              "description": "The product description"
+            },
+            "product_image_url": {
+              "type": "string",
+              "description": "The URL of the image that represents the product"
+            },
+            "product_price": {
+              "type": "integer",
+              "description": "A representation of the product price in pence"
+            },
+            "product_quantity": {
+              "type": "integer",
+              "description": "The number of items of this product that was purchased"
+            },
+            "cumulative_product_price": {
+              "type": "integer",
+              "description": "The result of multiplying the product price by the product quantity"
+            },
+            "cart_total": {
+              "type": "integer",
+              "description": "The sum total of all items in this order"
+            }
+          }
+        }
+      }
+    }
+  }
