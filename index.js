@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const app = express();
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json'); /* ... */
@@ -17,6 +18,15 @@ const loginFailureRouter = require('./routes/loginFailure');
 const cartRouter = require('./routes/cart');
 const ordersRouter = require('./routes/orders');
 const addressesRouter = require('./routes/addresses');
+const supertest = require('supertest');
+
+// Configure express-session
+app.use(session({
+    secret: 'aR@nD0m$3cR3tK3yF0rMyApp', // You should set a secret key for session data
+    resave: false,
+    saveUninitialized: true,
+  }));
+
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
@@ -44,11 +54,6 @@ if (!process.env.IS_TEST_ENV) {
 if(process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, "views")));
 }
-
-app.get('/test', (req, res) => {
-    res.send('This is a test route.');
-  });
-
 
 //render the homepage view when the app is loaded
 app.get('/', (req, res) => {
@@ -134,3 +139,7 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
+
+
+  
