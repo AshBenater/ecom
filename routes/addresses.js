@@ -34,9 +34,9 @@ addressesRouter.get('/:customerId', (req, res, next) => {
 addressesRouter.put('/:customerId/:addressId', (req, res, next) => {
     const address_id = req.params.addressId;
     const customer_id = req.params.customerId;
-    const { street_number, street_name, town, county, country, postcode } = req.body;
-    db.query('UPDATE addresses SET street_number = $1, street_name = $2, town = $3, county = $4, country = $5, postcode = $6 WHERE customer_id = $7 AND id = $8',
-        [street_number, street_name, town, county, country, postcode, customer_id, address_id],
+    const { street_number, street_name, town, country, postcode } = req.body;
+    db.query('UPDATE addresses SET street_number = $1, street_name = $2, town = $3, country = $4, postcode = $5 WHERE customer_id = $6 AND id = $7',
+        [street_number, street_name, town, country, postcode, customer_id, address_id],
         (err, result) => {
         if(err) {
             return next(err);
