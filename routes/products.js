@@ -40,21 +40,42 @@ productsRouter.post('/', (req, res, next) => {
         });
 });
 
-//updates a product
+// Update a product
 productsRouter.put('/:id', (req, res, next) => {
     const { item_name, item_description, image_url, price } = req.body;
     const id = req.params.id;
-    db.query('UPDATE products SET item_name = $1, item_description = $2, image_url = $3, price = $4 WHERE id = $5', [item_name, item_description, image_url, price, id], (err, result) => {
-        if(err) {
-            return next(err);
-        } else if(result.rows.length === 0) { //if no product with the specified ID is found in the database...
-            return next(new Error('No product with the specified ID found in the database.')); //...invoke the error-handling middleware with a message to this effect
-        }
-        else {
-            res.status(200).send(`Product with id ${id} modified successfully.`);
+
+    // First, check if the product to be updated exists.
+    db.query('SELECT * FROM products WHERE id = $1', [id], (selectErr, selectResult) => {
+        if (selectErr) {
+            console.log('Database Error (Select):', selectErr); // Debugging
+            return next(selectErr);
+        } else if (selectResult.rows.length === 0) {
+            console.log('No Product Found'); // Debugging
+            return next(new Error('No product with the specified ID found in the database.'));
+        } else {
+            // The product exists, proceed with the update.
+            db.query('UPDATE products SET item_name = $1, item_description = $2, image_url = $3, price = $4 WHERE id = $5',
+                [item_name, item_description, image_url, price, id],
+                (updateErr, result) => {
+                    if (updateErr) {
+                        console.log('Database Error (Update):', updateErr); // Debugging
+                        return next(updateErr);
+                    } else {
+                        const rowsAffected = result.rowCount;
+                        if (rowsAffected === 0) {
+                            console.log('No Rows Updated'); // Debugging: Log that no rows were updated.
+                            return next(new Error('No product with the specified ID found in the database.'));
+                        } else {
+                            console.log(`Update Successful - ${rowsAffected} rows updated`); // Debugging: Log that the update was successful.
+                            res.status(200).send(`Product with id ${id} modified successfully.`);
+                        }
+                    }
+                });
         }
     });
 });
+
 
 //deletes a specific product
 productsRouter.delete('/:id', (req, res, next) => {

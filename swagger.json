@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.1",
     "info": {
-      "title": "Codecademy e-Commerce REST API",
+      "title": "Codecademy e-Commerce REST API - Ashleigh",
       "description": "Defines the backend logic relating to the <strong>'registration'</strong>, <strong>'customers'</strong>, <strong>'addresses'</strong>, <strong>'orders'</strong>, <strong>'products'</strong>, <strong>'cart'</strong>, and <strong>'login'</strong> endpoints of an e-commerce REST API.  <code>GET</code> operations can be performed directly on the <strong>HEROKU</strong> database; <code>POST</code>/<code>PUT</code>/<code>DELETE</code> operations can be performed on the <strong>SWAGGER HUB</strong> <em>virtual mocking server</em> so that the <strong>HEROKU</strong> database is not compromised.",
       "version": "0.1"
     },
@@ -96,107 +96,107 @@
                   "example": [
                     {
                       "id": 1,
-                      "first_name": "Christopher",
-                      "last_name": "Larham",
-                      "username": "chris_larham_1983",
-                      "password": "updated_chrissy_b0i*",
-                      "email": "chrislarham@example.com"
+                      "first_name": "Mike",
+                      "last_name": "Lamb",
+                      "username": "mikelamb",
+                      "password": "mlpass",
+                      "email": "mikelamb@gmail.com"
                     },
                     {
                       "id": 2,
-                      "first_name": "Charlotte",
-                      "last_name": "Marie",
-                      "username": "charlotte_marie_1986",
-                      "password": "mar13p0os*",
-                      "email": "charlottemarie@example.com"
+                      "first_name": "Charlie",
+                      "last_name": "Bird",
+                      "username": "charlieB",
+                      "password": "birdC",
+                      "email": "charlieb@gmail.com"
                     },
                     {
                       "id": 3,
-                      "first_name": "William",
-                      "last_name": "Larham",
-                      "username": "will_larham_2007",
-                      "password": "w1lliam*",
-                      "email": "williamlarham@example.com"
+                      "first_name": "Will",
+                      "last_name": "Lime",
+                      "username": "lime",
+                      "password": "willie*",
+                      "email": "willlime@gmail.com"
                     },
                     {
                       "id": 4,
-                      "first_name": "Seth",
-                      "last_name": "Larham",
-                      "username": "seth_larham_2008",
-                      "password": "s3th0*",
-                      "email": "sethlarham@example.com"
+                      "first_name": "Sarah",
+                      "last_name": "Smith",
+                      "username": "SarahS",
+                      "password": "smith786*",
+                      "email": "sarahsmith@gmail.com"
                     },
                     {
                       "id": 5,
-                      "first_name": "Alyssa",
-                      "last_name": "Larham",
-                      "username": "alyssa_larham_2010",
-                      "password": "aly55a*",
-                      "email": "alyssalarham@example.com"
+                      "first_name": "Anna",
+                      "last_name": "Rogers",
+                      "username": "annaR",
+                      "password": "rogersa",
+                      "email": "ar@gmail.com"
                     },
                     {
                       "id": 6,
-                      "first_name": "Roger",
-                      "last_name": "Larham",
-                      "username": "roger_larham_1955",
-                      "password": "r0ger*",
-                      "email": "rogerlarham@example.com"
+                      "first_name": "Mary",
+                      "last_name": "Light",
+                      "username": "Marylight",
+                      "password": "LightM",
+                      "email": "maryl@gmail.com"
                     },
                     {
                       "id": 7,
-                      "first_name": "Judith",
-                      "last_name": "Larham",
-                      "username": "judi_larham_1956",
-                      "password": "Jud1*",
-                      "email": "judilarham@example.com"
+                      "first_name": "Judie",
+                      "last_name": "Kim",
+                      "username": "JudieK",
+                      "password": "JudK*",
+                      "email": "judiek@gmail.com"
                     },
                     {
                       "id": 8,
-                      "first_name": "Matthew",
-                      "last_name": "Rowlings",
-                      "username": "matt_rowlings_1983",
-                      "password": "Matti3*",
-                      "email": "mattrowlings@example.com"
+                      "first_name": "Margo",
+                      "last_name": "Robbie",
+                      "username": "MargoR",
+                      "password": "MRobbie",
+                      "email": "margor@gmail.com"
                     },
                     {
                       "id": 9,
-                      "first_name": "Steen",
+                      "first_name": "Stephanie",
                       "last_name": "Jinks",
-                      "username": "steen_jinks_1991",
-                      "password": "Jink5*",
-                      "email": "steenjinks@example.com"
+                      "username": "Stephjinks",
+                      "password": "Jink7!",
+                      "email": "stephJ@gmail.com"
                     },
                     {
                       "id": 10,
-                      "first_name": "Joe",
-                      "last_name": "Bloggs",
-                      "username": "joe_bloggs_1992",
-                      "password": "bl0ggs",
-                      "email": "joebloggs@example.com"
+                      "first_name": "Jen",
+                      "last_name": "Beet",
+                      "username": "jenbeet",
+                      "password": "beet",
+                      "email": "jenb@gmail.com"
                     },
                     {
                       "id": 11,
-                      "first_name": "Lugali",
-                      "last_name": "Bobtail",
-                      "username": "lugali_bobtail_1758",
-                      "password": "lugal1*",
-                      "email": "lugalibobtail@example.com"
+                      "first_name": "Beth",
+                      "last_name": "Polt",
+                      "username": "Bethp",
+                      "password": "Polt76",
+                      "email": "bethp@gmail.com"
                     },
                     {
                       "id": 12,
-                      "first_name": "Divine",
-                      "last_name": "Intervention",
-                      "username": "divine_intervention_0",
-                      "password": "Genes1s*",
-                      "email": "divineintervention@outlook.com"
+                      "first_name": "Diane",
+                      "last_name": "Intel",
+                      "username": "dianei",
+                      "password": "intel67",
+                      "email": "dianei@outlook.com"
                     },
                     {
                       "id": 13,
-                      "first_name": "Customer First Name",
-                      "last_name": "Customer Last Name",
-                      "username": "Customer Username",
-                      "password": "Customer Password",
-                      "email": "Customer Email"
+                      "first_name": "Ocean",
+                      "last_name": "Kinnel",
+                      "username": "oceank",
+                      "password": "kinnel75",
+                      "email": "oceank@gmail.com"
                     }
                   ]
                 }
@@ -458,133 +458,120 @@
                   "example": [
                     {
                       "id": 1,
-                      "street_number": 18,
-                      "town": "St. Austell",
-                      "county": "Cornwall",
+                      "street_number": 16,
+                      "town": "Bath",
                       "country": "England",
-                      "postcode": "PL26 8TS",
+                      "postcode": "PL22 8TS",
                       "customer_id": 1,
-                      "street_name": "Rosina Way"
+                      "street_name": "Bridge Way"
                     },
                     {
                       "id": 2,
-                      "street_number": 18,
-                      "town": "St. Austell",
-                      "county": "Cornwall",
+                      "street_number": 13,
+                      "town": "St. Austin",
                       "country": "England",
-                      "postcode": "PL26 8TS",
+                      "postcode": "KD26 7GH",
                       "customer_id": 2,
-                      "street_name": "Rosina Way"
+                      "street_name": "Jill Way"
                     },
                     {
                       "id": 3,
-                      "street_number": 18,
-                      "town": "St. Austell",
-                      "county": "Cornwall",
+                      "street_number": 11,
+                      "town": "Duke",
                       "country": "England",
-                      "postcode": "PL26 8TS",
+                      "postcode": "SO26 9PL",
                       "customer_id": 3,
-                      "street_name": "Rosina Way"
+                      "street_name": "Reff Way"
                     },
                     {
                       "id": 4,
-                      "street_number": 18,
-                      "town": "St. Austell",
-                      "county": "Cornwall",
+                      "street_number": 99,
+                      "town": "St. Bell",
                       "country": "England",
-                      "postcode": "PL26 8TS",
+                      "postcode": "DE56 3HT",
                       "customer_id": 4,
-                      "street_name": "Rosina Way"
+                      "street_name": "Bell Way"
                     },
                     {
                       "id": 5,
-                      "street_number": 18,
-                      "town": "St. Austell",
-                      "county": "Cornwall",
+                      "street_number": 19,
+                      "town": "Bath",
                       "country": "England",
-                      "postcode": "PL26 8TS",
+                      "postcode": "PL73 8KH",
                       "customer_id": 5,
-                      "street_name": "Rosina Way"
+                      "street_name": "Knight Way"
                     },
                     {
                       "id": 6,
-                      "street_number": 31,
+                      "street_number": 88,
                       "town": "Bugle",
-                      "county": "Cornwall",
                       "country": "England",
-                      "postcode": "PL26 8SJ",
+                      "postcode": "LO26 8SJ",
                       "customer_id": 10,
                       "street_name": "Springfields"
                     },
                     {
                       "id": 7,
-                      "street_number": 125,
-                      "town": "Upville",
-                      "county": "Super Mario",
-                      "country": "Oogloo",
-                      "postcode": "P249 IOLUG",
+                      "street_number": 456,
+                      "town": "Uponville",
+                      "country": "Pluto",
+                      "postcode": "P249 PLUTO",
                       "customer_id": 11,
-                      "street_name": "Rainbow Hills"
+                      "street_name": "Rainbow Sky Rd"
                     },
                     {
                       "id": 8,
-                      "street_number": 7,
+                      "street_number": 9,
                       "town": "Eden",
-                      "county": "Paradise",
-                      "country": "Omnipresence",
-                      "postcode": "EVR1 WH3R3",
+                      "country": "Heaven",
+                      "postcode": "HEA VEN",
                       "customer_id": 12,
-                      "street_name": "Day Creation"
+                      "street_name": "Creation Rd"
                     },
                     {
                       "id": 9,
-                      "street_number": 9,
-                      "town": "St. Austell",
-                      "county": "Cornwall",
+                      "street_number": 8,
+                      "town": "Crumble",
                       "country": "England",
-                      "postcode": "PL25 4BJ",
+                      "postcode": "KD45 4BJ",
                       "customer_id": 6,
-                      "street_name": "North Hill Park"
+                      "street_name": "Hill Park"
                     },
                     {
                       "id": 10,
                       "street_number": 9,
-                      "town": "St. Austell",
-                      "county": "Cornwall",
+                      "town": "St. Plage",
                       "country": "England",
-                      "postcode": "PL25 4BJ",
+                      "postcode": "KO95 4PJ",
                       "customer_id": 7,
-                      "street_name": "North Hill Park"
+                      "street_name": "North Park"
                     },
                     {
                       "id": 11,
-                      "street_number": 7,
+                      "street_number": 3,
                       "town": "St. Day",
-                      "county": "Cornwall",
                       "country": "England",
-                      "postcode": "TR16 5MR",
+                      "postcode": "TR18 8LS",
                       "customer_id": 8,
-                      "street_name": "Trenance Road"
+                      "street_name": "Tranny Road"
                     },
                     {
                       "id": 12,
-                      "street_number": 10,
-                      "town": "Redruth",
-                      "county": "Cornwall",
+                      "street_number": 5,
+                      "town": "Rule",
                       "country": "England",
-                      "postcode": "TR15 1SJ",
+                      "postcode": "UI87 1SJ",
                       "customer_id": 9,
-                      "street_name": "Random Road"
+                      "street_name": "Rem Rd"
                     },
                     {
                       "id": 13,
                       "street_number": 14,
-                      "town": "Updated Town",
-                      "county": "Updated County",
-                      "country": "Updated Country",
-                      "postcode": "P05t c0d3",
+                      "town": "Shulz",
+                      "country": "Germany",
+                      "postcode": "P098 C0D3",
                       "customer_id": 13,
-                      "street_name": "Updated Street Name"
+                      "street_name": "Blogschuls St"
                     }
                   ]
                 }
@@ -658,12 +645,13 @@
                   },
                   "example": [
                     {
-                      "street_number": 18,
-                      "street_name": "Rosina Way",
-                      "town": "St. Austell",
-                      "county": "Cornwall",
-                      "country": "England",
-                      "postcode": "PL25 8TS"
+                        "id": 13,
+                        "street_number": 14,
+                        "town": "Shulz",
+                        "country": "Germany",
+                        "postcode": "P098 C0D3",
+                        "customer_id": 13,
+                        "street_name": "Blogschuls St"
                     }
                   ]
                 }
@@ -850,8 +838,8 @@
                         {
                           "product_id": 3,
                           "customer_id": 12,
-                          "product_name": "Opportunity Rover - 2004-01-26 (Sol 1)",
-                          "product_description": "Photo taken by the Opportunity Rover's Panoramic Camera on 2004-01-26 (expedition sol 1)",
+                          "product_name": "Pear",
+                          "product_description": "Peckham pear",
                           "product_image_url": "https://mars.nasa.gov/mer/gallery/all/1/p/001/1P128287426EFF0000P2303L2M1-BR.JPG",
                           "product_price": 600,
                           "product_quantity": 9,
